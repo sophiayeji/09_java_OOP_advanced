@@ -34,7 +34,7 @@ public class ATM {
 		
 		identifier = userManager.logUser();
 		
-		if(identifier !=-1) { // ???
+		if(identifier !=-1) { 
 			printAccountMenu();
 		}
 		else {
@@ -54,17 +54,50 @@ public class ATM {
 		if(identifier == -1) {
 			System.out.println("[메시지] 로그인을 하신 후 이용하실 수 있습니다.");
 		}
+		else {
+			identifier = -1;
+			System.out.println("[메시지] 로그아웃 되었습니다.");
+			
+		}
 	}		
 		
 		
 		
-	
 	void leave() {
+		userManager.leave();
 		
 	}
 	
 	
 	void printAccountMenu() {
 		
+		while(true) {
+			
+			System.out.println("[1.계좌생성] [2.계좌삭제] [3.조회] [0.로그아웃] :" );
+			int sel = scan.nextInt();
+			
+			String makeAccount = Integer.toString(ran.nextInt(90001) + 10000); //*************
+			
+			if(sel == 1) {
+				
+				if(	userManager.user[identifier].accCount == 0) {
+					userManager.user[identifier].acc = new Account[1];
+					
+					userManager.user[identifier].acc[0] = new Account();
+					userManager.user[identifier].acc[0].number = makeAccount;
+					
+				}
+				else {
+					Account[]temp = userManager.getUser(identifier).acc;
+					int tempAccCount = userManager.getUser(identifier).accCount;
+					userManager.user[identifier].acc = new Account[tempAccCount+1];
+					for(int i =0; i< tempAccCount; i++) {
+							
+					}
+				}
+				
+				
+			}
+		}
 	}
 }

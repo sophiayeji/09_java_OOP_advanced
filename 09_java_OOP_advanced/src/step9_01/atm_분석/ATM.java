@@ -7,7 +7,7 @@ public class ATM {
 	Scanner scan = new Scanner(System.in);
 	Random ran   = new Random();
 	UserManager userManager = new UserManager();
-	int identifier = -1; // 중복된 아이디가 없는경우 
+	int identifier = -1; 
 	
 	void printMainMenu() {
 				
@@ -34,10 +34,10 @@ public class ATM {
 		
 		identifier = userManager.logUser();
 		
-		if (identifier != -1) { 
+		if (identifier != -1) { // 로그인이 되었을 경우 
 			printAccountMenu();
 		}
-		else {
+		else { // identifier = -1 
 			System.out.println("[메세지] 로그인실패.");
 		}
 		
@@ -51,11 +51,11 @@ public class ATM {
 	
 	void logout() { // 로그아웃 
 		
-		if (identifier == -1) {
+		if (identifier == -1) { //  로그인이 안되었을 경우 
 			System.out.println("[메시지] 로그인을 하신 후 이용하실 수 있습니다.");
 		}
-		else {
-			identifier = -1;
+		else {	
+			identifier = -1; // 로그인이 안되었을 경우 
 			System.out.println("[메시지] 로그아웃 되었습니다.");
 		}
 		
