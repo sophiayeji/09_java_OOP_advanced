@@ -79,21 +79,21 @@ public class ATM {
 			if (sel == 1) {
 				
 				if (userManager.user[identifier].accCount == 0) {
-					userManager.user[identifier].acc = new Account[1];
+					userManager.user[identifier].setAcc(new Account[1]);
 					
-					userManager.user[identifier].acc[0] = new Account();
-					userManager.user[identifier].acc[0].number = makeAccount;
+					userManager.user[identifier].getAcc()[0] = new Account();
+					userManager.user[identifier].getAcc()[0].number = makeAccount;
 				
 				}
 				else {
-					Account[] temp = userManager.getUser(identifier).acc;
+					Account[] temp = userManager.getUser(identifier).getAcc();
 					int tempAccCount = userManager.getUser(identifier).accCount;
-					userManager.user[identifier].acc = new Account[tempAccCount+1];
+					userManager.user[identifier].setAcc(new Account[tempAccCount+1]);
 					for (int i = 0; i < tempAccCount; i++) {
-						userManager.user[identifier].acc[i] = temp[i];
+						userManager.user[identifier].getAcc()[i] = temp[i];
 					}
-					userManager.user[identifier].acc[tempAccCount] = new Account();
-					userManager.user[identifier].acc[tempAccCount].number = makeAccount;
+					userManager.user[identifier].getAcc()[tempAccCount] = new Account();
+					userManager.user[identifier].getAcc()[tempAccCount].number = makeAccount;
 					
 				}
 				userManager.user[identifier].accCount++;
@@ -108,8 +108,8 @@ public class ATM {
 				}
 				
 				if (userManager.user[identifier].accCount == 1) {
-					System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].acc[0].number+"' 삭제 되었습니다.\n");
-					userManager.user[identifier].acc = null;
+					System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].getAcc()[0].number+"' 삭제 되었습니다.\n");
+					userManager.user[identifier].setAcc(null);
 				}
 				else {
 					
@@ -118,7 +118,7 @@ public class ATM {
 					int tempAccCount = userManager.user[identifier].accCount;
 					int delIdx = -1;
 					for (int i = 0; i <tempAccCount; i++) {
-						if (deleteAccount.equals(userManager.user[identifier].acc[i].number)) {
+						if (deleteAccount.equals(userManager.user[identifier].getAcc()[i].number)) {
 							delIdx = i;
 						}
 					}
@@ -128,17 +128,17 @@ public class ATM {
 						continue;
 					}
 					else {
-						System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].acc[delIdx].number+"' 삭제 되었습니다.\n");
+						System.out.println("[메시지] 계좌번호 :'"+ userManager.user[identifier].getAcc()[delIdx].number+"' 삭제 되었습니다.\n");
 						
-						Account[] temp = userManager.user[identifier].acc;
-						userManager.user[identifier].acc = new Account[tempAccCount-1];
+						Account[] temp = userManager.user[identifier].getAcc();
+						userManager.user[identifier].setAcc(new Account[tempAccCount-1]);
 						
 						
 						for (int i = 0; i < delIdx; i++) {
-							userManager.user[identifier].acc[i] = temp[i];
+							userManager.user[identifier].getAcc()[i] = temp[i];
 						}
 						for (int i = delIdx; i < tempAccCount - 1; i++) {
-							userManager.user[identifier].acc[i] = temp[i+1];
+							userManager.user[identifier].getAcc()[i] = temp[i+1];
 						}
 					}
 					

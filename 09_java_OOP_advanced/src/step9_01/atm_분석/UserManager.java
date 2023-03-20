@@ -25,7 +25,7 @@ public class UserManager {
 			String id = scan.next();
 			
 			user[userCount] = new User();
-			user[userCount].id = id;
+			user[userCount].setId(id);
 			System.out.println("[메시지] ID : '" + id+ "' 가입 되었습니다.\n");
 			userCount++;
 			
@@ -38,7 +38,7 @@ public class UserManager {
 			
 			boolean isDuple = false;
 			for (int i = 0; i < userCount; i++) {
-				if (user[i].id.equals(id)) {
+				if (user[i].getId().equals(id)) {
 					isDuple = true;
 				}
 			}
@@ -53,7 +53,7 @@ public class UserManager {
 				temp = null;
 				
 				user[userCount] = new User();
-				user[userCount].id = id;
+				user[userCount].setId(id);
 				System.out.println("[메시지] ID : '" + id+ "' 가입 되었습니다.\n");
 				userCount++;
 				
@@ -80,9 +80,9 @@ public class UserManager {
 		String name = scan.next();
 		
 		for (int i = 0; i < userCount; i++) {
-			if (name.equals(user[i].id)) {
+			if (name.equals(user[i].getId())) {
 				identifier = i;
-				System.out.println("[" + user[identifier].id + "] 님 로그인.\n");
+				System.out.println("[" + user[identifier].getId() + "] 님 로그인.\n");
 			}
 		}
 		
@@ -97,7 +97,7 @@ public class UserManager {
 		String name = scan.next();
 		int identifier = -1;
 		for (int i = 0; i < userCount; i++) {
-			if (name.equals(user[i].id)) {
+			if (name.equals(user[i].getId())) {
 				identifier = i;			
 			}
 		}
@@ -107,7 +107,7 @@ public class UserManager {
 			return;
 		}
 		
-		System.out.println("ID : '" +user[identifier].id + "' 가 탈퇴되었습니다.");
+		System.out.println("ID : '" +user[identifier].getId() + "' 가 탈퇴되었습니다.");
 		
 		User[] temp = user;
 		user = new User[userCount - 1];
