@@ -12,16 +12,16 @@ public class UserManager { // 유저관리자
 	
 	Scanner scan = new Scanner(System.in);
 	
-	final int ACC_MAX_CNT = 3;			// 최대 개설 가능한 계좌 수
-	User[] userList = null;				// 전체 회원정보
+	int ACC_MAX_CNT = 3;			// 최대 개설 가능한 계좌 수
+	public User[] userList = null;				// 전체 회원정보
 	int userCnt = 0;					// 전체 회원 수
 	
 	void printAllUser() { // 전체 유저 프린트 
 		
 		for (int i = 0; i < userCnt; i++) {
 			System.out.print((i+1) + ".ID(" + userList[i].id + ")\tPW(" + userList[i].pw + ")\t"); // 전체 id와 pw 정보를 프린트 
-			if (userList[i].accCnt != 0) { // 전체리스트에 있는 계정 수가 0이 아닌경우 ,0보다 많은경우 
-				for (int j = 0; j < userList[i].accCnt; j++) {
+			if (userList[i].getAccCnt() != 0) { // 전체리스트에 있는 계정 수가 0이 아닌경우 ,0보다 많은경우 
+				for (int j = 0; j < userList[i].getAccCnt(); j++) {
 					System.out.print("(" + userList[i].acc[j].accNumber + ":" + userList[i].acc[j].money + ")"); // 전체 계좌번호 및 금액 프린트 
 				}
 			}
@@ -34,7 +34,7 @@ public class UserManager { // 유저관리자
 		
 		boolean isDuple = false;
 		for (int i = 0; i < userCnt; i++) { // 반복 : ~~~유저수
-			for (int j = 0; j < userList[i].accCnt; j++) {   // 반복: ~~~사용자리스트의 계정
+			for (int j = 0; j < userList[i].getAccCnt(); j++) {   // 반복: ~~~사용자리스트의 계정
 				if (account.equals(userList[i].acc[j].accNumber)) { // 유저리스트의 계정의 계좌번호  = 계좌 일치하는 경우 
 					isDuple = true; // 참 
 				}
@@ -159,7 +159,7 @@ public class UserManager { // 유저관리자
 			userList[i].acc[0] = new Account();
 			userList[i].acc[0].accNumber = accs[i];
 			userList[i].acc[0].money = moneys[i];
-			userList[i].accCnt++;
+			userList[i].setAccCnt(userList[i].getAccCnt() + 1);
 		}
 		
 	}

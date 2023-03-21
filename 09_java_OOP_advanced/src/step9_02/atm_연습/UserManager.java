@@ -1,8 +1,7 @@
 package step9_02.atm_연습;
 
 import java.util.Scanner;
-
-import step9_01.atm_분석.User;
+import step9_02.atm_분석.FileManager;
 
 public class UserManager { // 유저관리자 
 	
@@ -15,17 +14,17 @@ public class UserManager { // 유저관리자
 	Scanner scan= new Scanner(System.in);
 	
 	final int ACC_MAX_CNT = 3; // 최대 개설 가능한 계좌
-	User[] userList = null; // 전체 회원 정보
+	public User[] userList = null; // 전체 회원 정보
 	int userCnt =0;    		// 전체 회원 수
 	
 	
 	void printAllUser() { // 전체 유저 프린트 
 	
 		for (int i = 0; i < userCnt; i++) {
-			System.out.print((i+1) + ".ID(" + userList[i].getId() + ")\tPW(" + userList[i].Pw + ")\t");
+			System.out.print((i+1) + ".ID(" + userList[i].id + ")\tPW(" + userList[i].pw + ")\t");
 			if(userList[i].accCnt !=0) {
 				for (int j = 0; j < userList[i].accCnt; j++) {
-					System.out.println("(" + userList[i].getAcc()[j].accNumber + ":" + userList[i].getAcc()[j].getMoney() + ")");
+					System.out.println("(" + userList[i].acc[j].accNumber + ":" + userList[i].acc[j].money + ")");
 				}
 			}
 			System.out.println();
@@ -38,7 +37,7 @@ public class UserManager { // 유저관리자
 		boolean isDuple = false;
 		for (int i = 0; i < userCnt; i++) {
 			for (int j = 0; j < userList[i].accCnt; j++) {
-				if(account.equals(userList[i].getAcc()[j].accNumber)) {
+				if(account.equals(userList[i].acc[j].accNumber)) {
 				isDuple = true;
 				}
 			}
@@ -58,7 +57,7 @@ public class UserManager { // 유저관리자
 		String pw = scan.next();
 		
 		for (int i = 0; i < UserManager.instance.userCnt; i++) {
-			if(userList[i].getId().equals(id) && userList[i].pw.equals(pw)) {
+			if(userList[i].id.equals(id) && userList[i].pw.equals(pw)) {
 				identifier = i;
 			}	
 		}	
@@ -69,7 +68,7 @@ public class UserManager { // 유저관리자
 		
 		boolean isDuple =false; 
 		for (int i = 0; i < userCnt; i++) {
-			if(userList[i].getId().equals(id)) {
+			if(userList[i].id.equals(id)) {
 				isDuple = true;
 			}
 		}
@@ -105,16 +104,49 @@ public class UserManager { // 유저관리자
 
 	
 	int deleteMember(int identifier) {
+		
+		User[] tmp = userList;
+		userList = new User[userCnt -1];
+		
+		int j =0;
+		for (int i = 0; i < userCnt; i++) {
+			if(i !=identifier) {
+				userList[j++] = tmp[i];
+			}
+		}
+		
+		userCnt--;
+		tmp = null;
+		identifier = -1;
+		
+		System.out.println("[메세지]탈퇴되었습니다. ");
+		
+		FileManager.getInstance().save();
+		
 		return identifier;
-		
-		
-		
+
 	}
 	
 	// (테스트생성용 메서드)  : 테스트 데이타 > 더미
 	void setDummy() {
+	
+		String[]ids = {"user1", "user2", "user3", "user4", "user5"};
+		String[]pws = {"1111", "2222", "3333", "4444", "5555"};
+		String[]accs = {"1234567", "2345692", "1078912", "2489123", "7391234" };
+		int[]moneys = {87000, 12000, 49000, 34000, 12800};
 		
+		userCnt = 5;
+		userList = new User[userCnt];
 		
+		for (int i = 0; i < userCnt; i++) {
+			userList[i] = new User();
+			userList[i].id = ids[i]; 
+			userList[i].pw = pws[i];
+			userList[i].acc[0] = new Account(); 
+			userList[i].acc[0].accNumber = accs[i]; 
+			userList[i].acc[0].money = moneys[i];
+			userList[i].accCnt++;			
+		}				
 	}
 	
 }

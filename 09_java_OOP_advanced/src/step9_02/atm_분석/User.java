@@ -3,9 +3,15 @@ package step9_02.atm_분석;
 public class User {
 	
 	Account[] acc = new Account[UserManager.getInstance().ACC_MAX_CNT];	
-	int accCnt;	
+	private int accCnt;	
 	String id;											
-	String pw;											
+	String pw;
+	public int getAccCnt() {
+		return accCnt;
+	}
+	public void setAccCnt(int accCnt) {
+		this.accCnt = accCnt;
+	}											
 	
 }
 

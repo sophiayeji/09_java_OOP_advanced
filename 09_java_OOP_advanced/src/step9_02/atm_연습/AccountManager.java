@@ -19,6 +19,19 @@ public class AccountManager {
 	
 	
 	void createAcc(int identifier) { 
+
+		int accCntByUser = um.userList[identifier].getAccCnt();
+		
+		if(accCntByUser == um.ACC_MAX_CNT) {
+			System.out.println("[메세지]계좌개설은 3개까지만 가능합니다.");
+			return;
+		}
+		
+		um.userList[identifier].acc[accCntByUser] = new Account();
+		String makeAccount = "";
+		while(true) {
+			
+		}
 }	
 		
 		

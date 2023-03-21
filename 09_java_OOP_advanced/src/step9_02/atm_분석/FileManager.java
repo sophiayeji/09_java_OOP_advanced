@@ -30,18 +30,18 @@ public class FileManager {
 			data += "\n";
 			data += um.userList[i].pw;
 			data += "\n";
-			data += um.userList[i].accCnt;
+			data += um.userList[i].getAccCnt();
 			data += "\n";
 			
-			if (um.userList[i].accCnt == 0) {
+			if (um.userList[i].getAccCnt() == 0) {
 				data += "0\n";
 			}
 			else {
-				for (int j = 0; j < um.userList[i].accCnt; j++) {
+				for (int j = 0; j < um.userList[i].getAccCnt(); j++) {
 					data += um.userList[i].acc[j].accNumber;
 					data += "/";
 					data += um.userList[i].acc[j].money;
-					if (j != um.userList[i].accCnt - 1) {
+					if (j != um.userList[i].getAccCnt() - 1) {
 						data += ",";
 					}
 				}
@@ -52,7 +52,7 @@ public class FileManager {
 	}
 	
 	
-	void save() {
+	public void save() {
 		
 		setData();
 		
@@ -107,7 +107,7 @@ public class FileManager {
 					
 					um.userList[j].id = id;
 					um.userList[j].pw = pw;
-					um.userList[j].accCnt = accCnt;
+					um.userList[j].setAccCnt(accCnt);
 					String accInfo = tmp[i+3];
 					
 					if (accCnt == 1) {

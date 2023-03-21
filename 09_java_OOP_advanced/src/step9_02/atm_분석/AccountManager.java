@@ -17,7 +17,7 @@ public class AccountManager { // 계정관리자
 
 	void createAcc(int identifier) { // 계정생성하기 
 		
-		int accCntByUser = um.userList[identifier].accCnt;
+		int accCntByUser = um.userList[identifier].getAccCnt();
 			//accCntByUser -> 유저관리자의 유저리스트에 있는 계정 수 
 		if (accCntByUser == um.ACC_MAX_CNT) { // accCntByUser가 유저관리자의 최대개설가능한 계좌의 수와 같을 떄 
 			System.out.println("[메세지]계좌개설은 3개까지만 가능합니다.");
@@ -34,7 +34,7 @@ public class AccountManager { // 계정관리자
 			}
 		}
 		um.userList[identifier].acc[accCntByUser].accNumber = makeAccount;
-		um.userList[identifier].accCnt++;
+		um.userList[identifier].setAccCnt(um.userList[identifier].getAccCnt() + 1);
 		System.out.println("[메세지]'" + makeAccount + "'계좌가 생성되었습니다.\n");
 		
 	}
@@ -46,7 +46,7 @@ public class AccountManager { // 계정관리자
 		System.out.println("====================");
 		System.out.println("ID : " + temp.id);
 		System.out.println("====================");
-		for (int i = 0; i < temp.accCnt; i++) {
+		for (int i = 0; i < temp.getAccCnt(); i++) {
 			System.out.println("accNumber:" +temp.acc[i].accNumber + " / money: " + temp.acc[i].money);
 		}
 		System.out.println("=============================\n");
