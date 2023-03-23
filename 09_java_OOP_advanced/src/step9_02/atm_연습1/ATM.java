@@ -10,7 +10,7 @@ public class ATM {
 	
 	void play() {
 		
-		FileManager.getInstance().load();
+		FileManager.getInstance1().load();
 		UserManager.getInstance().printAllUser();
 		
 		while (true) {
@@ -49,7 +49,7 @@ public class ATM {
 
 			if (selectMenu == 1) {
 				AccountManager.getInstance().createAcc(identifier);
-				FileManager.getInstance().save();
+				FileManager.getInstance1().save();
 			}
 			else if (selectMenu == 2) {
 				// 구현해보시오.

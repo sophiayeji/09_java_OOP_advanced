@@ -112,7 +112,7 @@ public class UserManager { // 유저관리자
 		userCnt++;
 		System.out.println("[메세지]회원가입을 축하합니다.");
 		
-		FileManager.getInstance().save();
+		FileManager.getInstance1().save();
 
 	}
 
@@ -135,7 +135,7 @@ public class UserManager { // 유저관리자
 		
 		System.out.println("[메세지]탈퇴되었습니다.");
 
-		FileManager.getInstance().save();
+		FileManager.getInstance1().save();
 		
 		return identifier;
 		

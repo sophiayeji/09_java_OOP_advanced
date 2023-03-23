@@ -72,7 +72,7 @@ public class FileManager {
 	}
 	
 	
-	void load() throws IOException {
+	void load()  {
 		
 		File file = new File(fileName);
 		FileReader fr = null;
@@ -80,6 +80,8 @@ public class FileManager {
 		
 		
 		try {
+			
+			if(file.exists()) {
 			
 			fr= new FileReader(file);
 			br = new BufferedReader(fr);
@@ -115,28 +117,44 @@ public class FileManager {
 					String[] tmp = accInfo.split("/");
 					
 					String acc = tmp[0];
-					int money = Integer.parseInt(temp[1]);
+					int money = Integer.parseInt(tmp[1]);
 					
 					um.userList[j].acc[0] = new Account();
 					um.userList[j].acc[0].accNumber = acc;
-					um.userList[j].acc[0].money = money;
-					
-					
-					
+					um.userList[j].acc[0].money = money;			
 				}
+				if(accCnt > 1) {
+					
+					String[] tmp = accInfo.split(",");
+					
+					for (int k = 0; k < tmp.length; k++) {
+						String[]parse = temp[k].split("/");
+						String acc = parse[0];
+						int money = Integer.parseInt(parse[1]);
+						
+						um.userList[j].acc[k] = new Account();
+						um.userList[j].acc[k].accNumber = acc;
+						um.userList[j].acc[k].money = money;
+					}
+				}
+				j++;
 			}
 			
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} 
+		else {
+			setData();
+			save();
 		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			if (br != null) {try{br.close();} catch(IOException e) {}}
+			if (fr != null)	{try{br.close();} catch(IOException e) {}}
+		}
+	}
+	
 }
 
-	public static FileManager getInstance() {
-		return instance;
-		// TODO Auto-generated method stub
-}
-}
 		
 		
 	
