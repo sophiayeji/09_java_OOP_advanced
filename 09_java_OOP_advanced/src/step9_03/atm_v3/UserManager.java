@@ -18,7 +18,7 @@ public class UserManager {
 		System.out.println("아이디\t패스워드\t계좌정보");
 		for (int i = 0; i < userCount; i++) {
 			userList[i].printOneUserAllAccounts();
-		},"f"
+		}
 		System.out.println("--------------------------");
 		
 	}
