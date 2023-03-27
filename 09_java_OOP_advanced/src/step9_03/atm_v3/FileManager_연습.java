@@ -4,16 +4,15 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileManager_연습 {
 
-	private FileManager_연습() {
-	}
-
-	private static FileManager instance = new FileManager();
-
-	public static FileManager getInstacne() {
+	
+	private FileManager_연습() {}
+	private static FileManager_연습 instance = new FileManager_연습();
+	public static FileManager_연습 getInstacne() {
 		return instance;
 	}
 
@@ -98,13 +97,37 @@ public class FileManager_연습 {
 		data+=userManager.userCount;
 		data +="\n";
 		
-		for (int i = 0; i < userManager.userCount; i++) {
+		for (int i = 0; i < userManager.userCount; i++) { // userCount
 			User user = userManager.userList[i];
 			data += user.id;	data += "/";
 			data += user.password; data += "/";
 			data += user.accCount;
 			
-			if(user.accCount>0) {} 
+			if(user.accCount > 0) {	// accCount
+				data += "/";
+				for (int j = 0; j < user.accCount; j++) {
+				Account acc = user.accList[j];
+				data +=acc.number;
+				data +="/";
+				data+=acc.money;
+				if(j !=user.accCount- 1) {
+					data += "/";
+				}
+			}
+		}
+		if(i!= userManager.userCount-1) {
+			data += "\n";
+		}	
+	}
+	FileWriter fw = null;
+	
+		try {
+			fw= new FileWriter(fileName);
+			fw.write(data);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	finally {
+				if (fw != null){try	{fw.close();} catch (IOException e) {} }
 		}
 	} 
 
