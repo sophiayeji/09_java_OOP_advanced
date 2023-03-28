@@ -41,14 +41,15 @@ public class Main_연습 {
 				String id = scan.next();
 				
 				StudentSelect stSelect = controller.getSelect();
+				StudentVO st = stSelect.select(id);
 					
 					int identifier = -1;
-					if(identifier == -1); System.out.println("아이디를 먼저 생성해주세요.\n");
+					if(identifier == -1); {
+						System.out.println("아이디를 먼저 생성해주세요.\n");
+					}
 					
-					StudentVO st = stSelect.select(id);
-					
-				
-			}
+				}	
+				}
 				
 			if(selectMenu == 4) { // 4. 출력
 				
@@ -60,7 +61,11 @@ public class Main_연습 {
 				
 				if(st != null) st.printOneInfo();
 				
+				
+				
 			}
+				
+					
 			
 			else if(selectMenu == 5) { // 5. 전체출력
 
@@ -71,11 +76,9 @@ public class Main_연습 {
 				
 				System.out.println("종료");
 				scan.close();
-				break;
-				
+				break;				
 			}			
 		}
+	}
+}	
 
-	}
-	}
-}
