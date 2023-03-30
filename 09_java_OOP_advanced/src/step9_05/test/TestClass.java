@@ -1,7 +1,7 @@
 package step9_05.test;
 import java.util.ArrayList;
 
-class Member {
+class Member { // 회원정보 
 	
 	private int    custno;			// 회원번호
 	private String custname;		// 회원성명
@@ -94,7 +94,7 @@ public class TestClass {
 		
 		Manager mg = new Manager();
 		mg.init();
-		
+		//ArrayEx32 
 		/*
 		   [문제] 아 래와 같이 출력  매출(price) 의 합계 + 내림차순 
 		  
@@ -107,17 +107,17 @@ public class TestClass {
 			100002	이축복		2500
 			--------------------------------
 		 */
-
-			System.out.println("100001	김행복");
-			System.out.println("--------------------------------");
-			System.out.println("100004	최사랑");
-			System.out.println("--------------------------------");
-			System.out.println("100003	장믿음");
-			System.out.println("--------------------------------");
-			System.out.println("100002	이축복");
-			System.out.println("--------------------------------");
+		
+			int maxprice = 0;
+			
+		
+			//for (int i = 0; i < moneyList.length; i++) {				
+			}
+		
+		
+			
 			
 			
 	}
 
-}
+
